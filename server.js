@@ -2,10 +2,18 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
-// 1. Firebase Admin Initialization
+// 1. Firebase Admin Initialization (Secure for Render & Local)
 const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
-const serviceAccount = require('./serviceAccountKey.json');
+
+let serviceAccount;
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    // Reads from Render Environment Variable
+    serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} else {
+    // Falls back to local serviceAccountKey.json during local testing
+    serviceAccount = require('./serviceAccountKey.json');
+}
 
 initializeApp({
     credential: cert(serviceAccount),
