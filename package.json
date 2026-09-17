@@ -1,0 +1,23 @@
+{
+  "name": "el-classico-kerala",
+  "version": "1.0.0",
+  "description": "Real-time El Clasico fan voting and chat platform for Kerala fans",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "el-classico",
+    "football",
+    "socket.io",
+    "firebase"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^4.19.2",
+    "firebase-admin": "^11.11.0",
+    "socket.io": "^4.8.3"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Results - EL-CLASSICO KERALA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="result-page" style="background: #0a0a0a; color: #fff; font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+
+    <!-- Header -->
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #121212; border-bottom: 1px solid #333;">
+        <div class="logo" style="font-size: 20px; font-weight: 900; color: #fff;">EL-CLASSICO <span style="color: #e2b026;">KERALA</span></div>
+        <nav style="display: flex; gap: 20px;">
+            <a href="index.html" style="color: #ccc; text-decoration: none; font-weight: bold;">🏠 Home (Vote)</a>
+            <a href="chat.html" style="color: #ccc; text-decoration: none; font-weight: bold;">💬 Fan Chat</a>
+        </nav>
+    </header>
+
+    <div style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px;">
+        <div class="result-container" style="width: 100%; max-width: 600px; background: #1a1a1a; padding: 40px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8); text-align: center;">
+            <h2 style="color: #e2b026; font-size: 26px; margin-bottom: 5px;">LIVE FAN BASE RESULTS</h2>
+            <p style="color: #888; font-size: 14px; margin-bottom: 30px;">Real-time Kerala El-Classico Voting Stats</p>
+            
+            <!-- Percentages Display -->
+            <div class="stats-display" style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: bold; font-size: 18px;">
+                <div style="color: #FFED02;">
+                    FC BARCELONA<br>
+                    <span id="barca-text" style="font-size: 24px;">50%</span>
+                </div>
+                <div style="color: #ffffff;">
+                    REAL MADRID<br>
+                    <span id="madrid-text" style="font-size: 24px;">50%</span>
+                </div>
+            </div>
+
+            <!-- Progress Bars Container -->
+            <div class="progress-bar-container" style="background: #222; height: 35px; border-radius: 18px; overflow: hidden; display: flex; margin-bottom: 25px; border: 1px solid #444; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                <div id="barca-bar" class="barca-bar" style="width: 50%; background: linear-gradient(90deg, #004d98, #0070f3); transition: width 0.6s ease;"></div>
+                <div id="madrid-bar" class="madrid-bar" style="width: 50%; background: linear-gradient(90deg, #e0e0e0, #ffffff); transition: width 0.6s ease;"></div>
+            </div>
+
+            <p id="total-votes" style="font-size: 18px; font-weight: bold; color: #e2b026; margin-bottom: 30px;">Total Votes: 0</p>
+            
+            <!-- Navigation Links -->
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <a href="index.html" style="background: #333; color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: 0.3s;">Back to Stadium</a>
+                <a href="chat.html" style="background: linear-gradient(90deg, #e2b026, #f39c12); color: black; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: 0.3s; box-shadow: 0 0 15px rgba(226, 176, 38, 0.4);">Join Live Chat</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required Socket.io and Script files -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

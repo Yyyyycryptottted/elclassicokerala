@@ -1,0 +1,372 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #121212;
+    color: white;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #e2b026; /* Gold */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #e2b026;
+}
+
+.login-btn {
+    background: white;
+    color: black;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #e2b026;
+    color: white;
+}
+
+/* Split Screen Voting Section */
+.split-screen {
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+
+.team {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: flex 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.team:hover {
+    flex: 1.2; /* Expands slightly on hover */
+}
+
+.barca {
+    background: linear-gradient(135deg, #A50044, #004D98);
+}
+
+.madrid {
+    background: linear-gradient(135deg, #ffffff, #d4d4d4);
+    color: #121212;
+}
+
+.content {
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.team:hover .content {
+    transform: scale(1.1);
+}
+
+.team-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));
+    border: 3px solid white;
+}
+
+.vote-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.barca-btn {
+    background: #FFED02;
+    color: #004D98;
+}
+
+.barca-btn:hover {
+    background: #ffffff;
+    box-shadow: 0px 0px 20px #FFED02;
+}
+
+.madrid-btn {
+    background: #121212;
+    color: #ffffff;
+}
+
+.madrid-btn:hover {
+    background: #FEBE10;
+    color: #121212;
+    box-shadow: 0px 0px 20px #FEBE10;
+}
+
+.vs-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #121212;
+    color: white;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 900;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+/* Results Section */
+.results-section {
+    padding: 60px 20px;
+    text-align: center;
+    background: #1a1a1a;
+}
+
+.progress-container {
+    display: flex;
+    width: 80%;
+    height: 40px;
+    margin: 20px auto;
+    background: #333;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    transition: width 0.5s ease-in-out;
+}
+
+.barca-progress { background: #A50044; width: 50%; }
+.madrid-progress { background: #ffffff; color: #121212; width: 50%; }
+
+/* --- Achievements & Trophy Room Section --- */
+.achievements-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #141414;
+    border-top: 1px solid #222;
+}
+
+.achievements-section h2 {
+    color: #e2b026;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.achievements-subtitle {
+    color: #888;
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+.trophy-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.trophy-card {
+    background: #1c1c1c;
+    border-radius: 20px;
+    padding: 30px;
+    width: 380px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    transition: transform 0.3s ease;
+}
+
+.trophy-card:hover {
+    transform: translateY(-8px);
+}
+
+.barca-card {
+    border: 2px solid #004D98;
+}
+
+.madrid-card {
+    border: 2px solid #ffffff;
+}
+
+.trophy-card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.barca-card h3 { color: #FFED02; }
+.madrid-card h3 { color: #ffffff; }
+
+.trophy-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.trophy-card li {
+    font-size: 15px;
+    color: #ddd;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Chat Section */
+#chat-section {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-container {
+    width: 600px;
+    background: #222;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #121212;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.message {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.user { font-weight: bold; }
+.barca-user { color: #A50044; }
+.madrid-user { color: #ffffff; }
+
+.login-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    z-index: 5;
+}
+
+.login-overlay button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #e2b026;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input-area {
+    display: flex;
+    margin-top: 15px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.chat-input-area button {
+    padding: 10px 20px;
+    background: #e2b026;
+    border: none;
+    font-weight: bold;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #000;
+    color: #777;
+    font-size: 13px;
+}
+
+/* Mobile Responsiveness for Trophy Room */
+@media (max-width: 768px) {
+    .trophy-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .trophy-card {
+        width: 100%;
+        max-width: 340px;
+    }
+}

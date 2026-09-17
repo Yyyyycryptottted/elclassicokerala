@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Fan Chat - EL-CLASSICO KERALA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body.chat-page { display: flex; flex-direction: column; height: 100vh; background: #0a0a0a; margin: 0; overflow: hidden; }
+        .chat-page-wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding-top: 80px; padding-bottom: 20px; }
+        .chat-container.full-screen { width: 90%; max-width: 900px; height: 85vh; display: flex; flex-direction: column; background: #1a1a1a; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8); position: relative; }
+        .chat-container.full-screen h3 { text-align: center; padding: 15px; background: #121212; border-bottom: 1px solid #333; border-radius: 15px 15px 0 0; color: #e2b026; margin: 0; }
+        .chat-box { flex: 1; overflow-y: auto; padding: 20px; background: #121212; }
+        .message { margin-bottom: 15px; font-size: 15px; line-height: 1.4; padding: 10px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; width: fit-content; max-width: 80%; }
+        
+        .ticket-bar { background: #222; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; font-size: 14px; font-weight: bold; }
+        .watch-ad-btn { background: linear-gradient(90deg, #e2b026, #f39c12); color: #000; border: none; padding: 8px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 0 10px rgba(226, 176, 38, 0.4); }
+        .watch-ad-btn:hover { box-shadow: 0 0 20px rgba(226, 176, 38, 0.8); transform: scale(1.05); }
+        
+        .ad-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 100; flex-direction: column; justify-content: center; align-items: center; border-radius: 15px; }
+        .ad-overlay h2 { color: #e2b026; font-size: 28px; margin-bottom: 10px; }
+        .ad-overlay .timer { font-size: 60px; font-weight: 900; color: white; margin-bottom: 20px; }
+        .ad-overlay p { color: #aaa; font-size: 14px; }
+        
+        .chat-input-area { display: flex; padding: 20px; background: #1a1a1a; border-top: 1px solid #333; border-radius: 0 0 15px 15px; gap: 10px; }
+        .chat-input-area input { flex: 1; font-size: 16px; padding: 15px; border-radius: 8px; border: 1px solid #333; background: #121212; color: white; outline: none; }
+        .chat-input-area button { font-size: 16px; padding: 0 30px; background: #e2b026; color: black; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; }
+    </style>
+</head>
+<body class="chat-page">
+
+    <!-- Header -->
+    <header>
+        <div class="logo">EL-CLASSICO <span>KERALA</span></div>
+        <nav>
+            <a href="index.html">🏠 Home (Vote)</a>
+            <a href="result.html">📊 Live Results</a>
+            <a href="login.html" class="login-btn" id="nav-login-btn" style="text-decoration: none; display: inline-block;">Login</a>
+        </nav>
+    </header>
+
+    <div class="chat-page-wrapper">
+        <div class="chat-container full-screen">
+            <h3>🔴 Live El-Classico Fan Debate</h3>
+            
+            <div class="chat-box" id="chat-box">
+                <div class="message"><span class="user" style="color: #888;">System:</span> Welcome! You need 1 Ticket 🎟️ to send a message.</div>
+            </div>
+
+            <!-- Ad Simulation Overlay -->
+            <div class="ad-overlay" id="ad-overlay">
+                <h2>Sponsor Ad Playing...</h2>
+                <div class="timer" id="ad-timer">5</div>
+                <p>Support El-Classico Kerala to earn a chat ticket!</p>
+            </div>
+
+            <!-- Ticket Bar (Hidden by default until login) -->
+            <div class="ticket-bar" id="ticket-bar" style="display: none;">
+                <span>🎟️ Tickets available: <span id="ticket-count" style="color: #e2b026; font-size: 18px;">0</span></span>
+                <button class="watch-ad-btn" onclick="watchAd()">📺 Watch Ad (+1 Ticket)</button>
+            </div>
+
+            <!-- Message Input (Hidden by default until login) -->
+            <div class="chat-input-area" id="chat-input-area" style="display: none;">
+                <input type="text" id="chat-input" placeholder="Type your message here (Costs 1 Ticket)..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+
+            <!-- Login Prompt (Shows if NOT logged in) -->
+            <div id="chat-login-prompt" style="text-align: center; padding: 30px; background: #1a1a1a; border-radius: 0 0 15px 15px;">
+                <p style="margin-bottom: 15px; color: #aaa;">You must be logged in to collect tickets and send messages.</p>
+                <a href="login.html" style="color: #000; background: #e2b026; text-decoration: none; font-weight: bold; font-size: 16px; padding: 10px 25px; border-radius: 8px; display: inline-block;">
+                    Login / Register Here
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required Socket.io and Script files for production & development -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

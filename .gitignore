@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Firebase private keys (CRITICAL for security)
+serviceAccountKey.json
+*.json
+!package.json
+
+# Environment variables
+.env
+
+# OS specific files
+.DS_Store
+Thumbs.db

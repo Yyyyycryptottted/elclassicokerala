@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL-CLASSICO KERALA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">EL-CLASSICO <span>KERALA</span></div>
+        <nav>
+            <a href="#voting-section">Vote Now</a>
+            <a href="chat.html">Fan Chat</a>
+            <a href="login.html" class="login-btn" id="nav-login-btn" style="text-decoration: none; display: inline-block;">Login</a>
+        </nav>
+    </header>
+
+    <!-- Main Voting Section -->
+    <section id="voting-section" class="split-screen">
+        <!-- Barcelona Side -->
+        <div class="team barca">
+            <div class="content">
+                <img src="https://wallpapercat.com/w/full/3/b/e/208204-2560x1600-desktop-hd-fc-barcelona-background.jpg" alt="Barcelona Logo" class="team-logo">
+                <h2>FC BARCELONA</h2>
+                <p>Visca el Barça! Represent the Culers of Kerala.</p>
+                <button class="vote-btn barca-btn" onclick="castVote('barca')">VOTE BARÇA</button>
+            </div>
+        </div>
+
+        <!-- Real Madrid Side -->
+        <div class="team madrid">
+            <div class="content">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn0X4qu-RxM8NUCG0AykOhQjCltfdA1NymbF7hWrjd2Q&s=10" alt="Real Madrid Logo" class="team-logo">
+                <h2>REAL MADRID</h2>
+                <p>Hala Madrid! Represent the Madridistas of Kerala.</p>
+                <button class="vote-btn madrid-btn" onclick="castVote('madrid')">VOTE MADRID</button>
+            </div>
+        </div>
+        
+        <!-- VS Badge in the center -->
+        <div class="vs-badge">VS</div>
+    </section>
+
+    <!-- Results Progress Bar -->
+    <section class="results-section">
+        <h3>Live Kerala Fan Base Results</h3>
+        <div class="progress-container">
+            <div class="progress-bar barca-progress" id="barca-bar">50%</div>
+            <div class="progress-bar madrid-progress" id="madrid-bar">50%</div>
+        </div>
+        <p id="total-votes">Total Votes: 0</p>
+        <br>
+        <a href="result.html" style="color: #e2b026; text-decoration: none; font-weight: bold;">View Full Screen Results →</a>
+    </section>
+
+    <!-- Achievements & Trophy Room Section -->
+    <section class="achievements-section">
+        <h2>🏆 EL CLÁSICO TROPHY ROOM</h2>
+        <p class="achievements-subtitle">The historical legacy and supreme dominance of Spanish football giants</p>
+
+        <div class="trophy-grid">
+            <!-- Barcelona Card -->
+            <div class="trophy-card barca-card">
+                <h3>FC Barcelona 🔵🔴</h3>
+                <ul>
+                    <li>🇪🇸 La Liga Titles: <strong>27+</strong></li>
+                    <li>🏆 UEFA Champions League: <strong>5</strong></li>
+                    <li>🛡️ Copa del Rey: <strong>31</strong></li>
+                    <li>⭐ Historic Sextuple Winners (2009)</li>
+                </ul>
+            </div>
+
+            <!-- Real Madrid Card -->
+            <div class="trophy-card madrid-card">
+                <h3>Real Madrid ⚪👑</h3>
+                <ul>
+                    <li>🇪🇸 La Liga Titles: <strong>36+</strong></li>
+                    <li>🏆 UEFA Champions League: <strong>15</strong></li>
+                    <li>🛡️ Copa del Rey: <strong>20</strong></li>
+                    <li>👑 FIFA Club of the 20th Century</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made for the Football Fans of Kerala | El-Classico Kerala © 2026</p>
+    </footer>
+
+   <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</html>

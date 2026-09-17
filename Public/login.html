@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - EL-CLASSICO KERALA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: white;
+            overflow: hidden;
+        }
+
+        .auth-container {
+            background: #121212;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+            border: 1px solid #333;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .logo span { color: #e2b026; } /* Gold */
+
+        .form-box {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Hide register form by default */
+        #register-form { display: none; }
+
+        .form-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: #e2b026;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background: #e2b026;
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .auth-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 15px #e2b026;
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #888;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .toggle-link:hover { color: #fff; text-decoration: underline; }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .back-link:hover { color: white; }
+
+        .message {
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .error { color: #ff4d4d; }
+        .success { color: #00e676; }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="logo">EL-CLASSICO <br><span>KERALA</span></div>
+
+        <!-- LOGIN FORM -->
+        <div class="form-box" id="login-form">
+            <h2>Welcome Back</h2>
+            <p id="login-msg" class="message error"></p>
+
+            <div class="input-group">
+                <input type="email" id="log-email" placeholder="Email ID" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="log-password" placeholder="Password" required>
+            </div>
+
+            <button class="auth-btn" onclick="processLogin()">Login</button>
+            <p class="toggle-link" onclick="toggleForm('register')">Don't have an account? Register here</p>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div class="form-box" id="register-form">
+            <h2>Create an Account</h2>
+            <p id="reg-msg" class="message error"></p>
+
+            <div class="input-group">
+                <input type="text" id="reg-name" placeholder="Full Name (Fan Name)" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="reg-email" placeholder="Email ID" required>
+            </div>
+            <div class="input-group">
+                <select id="reg-team">
+                    <option value="" disabled selected>Select Your Team</option>
+                    <option value="Barca">FC Barcelona</option>
+                    <option value="Madrid">Real Madrid</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input type="password" id="reg-password" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="reg-confirm" placeholder="Confirm Password" required>
+            </div>
+
+            <button class="auth-btn" onclick="processRegister()">Register</button>
+            <p class="toggle-link" onclick="toggleForm('login')">Already have an account? Login here</p>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <script>
+        // Toggle between Login and Register views
+        function toggleForm(formType) {
+            document.getElementById('login-form').style.display = formType === 'login' ? 'flex' : 'none';
+            document.getElementById('register-form').style.display = formType === 'register' ? 'flex' : 'none';
+            
+            // Clear messages
+            document.getElementById('login-msg').style.display = 'none';
+            document.getElementById('reg-msg').style.display = 'none';
+        }
+
+        // Handle Registration
+        function processRegister() {
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const team = document.getElementById('reg-team').value;
+            const pass = document.getElementById('reg-password').value;
+            const confirmPass = document.getElementById('reg-confirm').value;
+            const msgBox = document.getElementById('reg-msg');
+
+            // Basic Validation
+            if (!name || !email || !team || !pass || !confirmPass) {
+                msgBox.textContent = "Please fill in all fields!";
+                msgBox.className = "message error";
+                msgBox.style.display = "block";
+                return;
+            }
+
+            if (pass !== confirmPass) {
+                msgBox.textContent = "Passwords do not match!";
+                msgBox.className = "message error";
+                msgBox.style.display = "block";
+                return;
+            }
+
+            // Save user data (Mock Database using LocalStorage)
+            // In a real app, you would send this to your Node.js backend
+            const userAccount = { name: name, email: email, team: team, password: pass };
+            localStorage.setItem("db_" + email, JSON.stringify(userAccount));
+
+            // Show success & redirect to login
+            msgBox.textContent = "Registration Successful! Please login.";
+            msgBox.className = "message success";
+            msgBox.style.display = "block";
+
+            // Clear form
+            document.getElementById('reg-name').value = '';
+            document.getElementById('reg-email').value = '';
+            document.getElementById('reg-password').value = '';
+            document.getElementById('reg-confirm').value = '';
+            document.getElementById('reg-team').value = '';
+
+            // Automatically switch to login screen after 1.5 seconds
+            setTimeout(() => { toggleForm('login'); }, 1500);
+        }
+
+        // Handle Login
+        function processLogin() {
+            const email = document.getElementById('log-email').value.trim();
+            const pass = document.getElementById('log-password').value;
+            const msgBox = document.getElementById('login-msg');
+
+            if (!email || !pass) {
+                msgBox.textContent = "Enter email and password!";
+                msgBox.style.display = "block";
+                return;
+            }
+
+            // Check if user exists in our "Mock Database" (LocalStorage)
+            const savedUserData = localStorage.getItem("db_" + email);
+
+            if (savedUserData) {
+                const parsedData = JSON.parse(savedUserData);
+
+                // Check password
+                if (parsedData.password === pass) {
+                    // Login successful! Save active session info for the Chat.
+                    localStorage.setItem("elclassico_username", parsedData.name);
+                    localStorage.setItem("elclassico_team", parsedData.team);
+                    
+                    // Redirect to home page
+                    window.location.href = "index.html";
+                } else {
+                    msgBox.textContent = "Incorrect password!";
+                    msgBox.style.display = "block";
+                }
+            } else {
+                msgBox.textContent = "Account not found. Please register.";
+                msgBox.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
